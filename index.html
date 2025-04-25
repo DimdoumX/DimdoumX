@@ -249,6 +249,88 @@
       <img src="DSC_0530.jpg" alt="صورة DimdoumX 2" />
     </div>
   </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Lightbulb</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #1a1a1a;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .lightbulb-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lightbulb {
+      width: 120px;
+      height: 180px;
+      background: #ffeb3b;
+      border-radius: 50% 50% 0 0;
+      position: relative;
+      box-shadow: 0 0 30px 15px #ffeb3b;
+      transition: box-shadow 0.5s, background 0.5s;
+    }
+
+    .lightbulb::after {
+      content: '';
+      width: 30px;
+      height: 30px;
+      background: #333;
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+    }
+
+    .lightbulb.off {
+      background: #555;
+      box-shadow: none;
+    }
+
+    .switch {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #444;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .switch:hover {
+      background: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="lightbulb-container">
+    <div class="lightbulb" id="lightbulb"></div>
+    <button class="switch" onclick="toggleLight()">Toggle Light</button>
+  </div>
+
+  <script>
+    function toggleLight() {
+      const bulb = document.getElementById('lightbulb');
+      bulb.classList.toggle('off');
+    }
+  </script>
+</body>
 
   <footer>
     <p>© 2025 DimdoumX. جميع الحقوق محفوظة.</p>
