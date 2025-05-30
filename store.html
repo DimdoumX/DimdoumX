@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>المتجر - DimdoumX</title>
+  <meta name="description" content="تسوق منتجات DimdoumX الأصلية والمميزة" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: #f4f4f4;
+      color: #222;
+      direction: rtl;
+    }
+
+    /* --- Navbar --- */
+    .navbar {
+      background-color: #111;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.4rem 0.7rem;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    .navbar a:hover,
+    .navbar a[aria-current="page"] {
+      background-color: #e91e63;
+      box-shadow: 0 0 8px #e91e63;
+    }
+
+    /* --- Main content --- */
+    main {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* --- Blur Overlay inside MAIN only --- */
+    .blur-overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 12px;
+    }
+
+    .blur-overlay h1 {
+      font-size: 4rem;
+      color: #e91e63;
+      font-weight: bold;
+      background: rgba(255,255,255,0.3);
+      padding: 2rem 3rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #e91e63;
+      font-size: 2.7rem;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .product-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #fafafa;
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+    .product-card:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .product-card .info {
+      padding: 1rem;
+    }
+    .product-card h3 {
+      margin: 0 0 0.5rem;
+      color: #e91e63;
+    }
+    .product-card p {
+      margin: 0.3rem 0;
+    }
+    .product-card button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    .product-card button:hover {
+      background-color: #388e3c;
+    }
+
+    .cart {
+      margin-top: 3rem;
+      background-color: #fefefe;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.07);
+      position: relative;
+      z-index: 1;
+    }
+    .cart h2 {
+      color: #e91e63;
+    }
+    .cart-items {
+      margin: 1rem 0;
+      list-style: none;
+      padding: 0;
+    }
+    .cart-items li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed #ccc;
+      align-items: center;
+    }
+    .cart-items button {
+      background: none;
+      color: #e91e63;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .checkout-button {
+      display: inline-block;
+      background-color: #e91e63;
+      color: white;
+      padding: 0.9rem 1.5rem;
+      font-size: 1.1rem;
+      text-decoration: none;
+      border-radius: 8px;
+      margin-top: 1rem;
+      transition: background 0.3s;
+    }
+    .checkout-button:hover {
+      background-color: #c2185b;
+    }
+
+    footer {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+    }
+    .social-icons a {
+      color: #fff;
+      margin: 0 0.7rem;
+      font-size: 1.6rem;
+      transition: color 0.3s ease;
+    }
+    .social-icons a:hover {
+      color: #e91e63;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">DimdoumX</div>
+    <nav>
+      <ul>
+        <li><a href="index1.html">الرئيسية</a></li>
+        <li><a href="about.html">اكتشفني اكثر</a></li>
+        <li><a href="social.html">تواصل</a></li>
+        <li><a href="youtube.html">فيديوهات</a></li>
+        <li><a href="gallery.html">معرض</a></li>
+        <li><a href="store.html" aria-current="page">المتجر</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <!-- Blur overlay appears only inside main -->
+    <div class="blur-overlay">
+      <h1>قريباً - SOON</h1>
+    </div>
+
+    <h1>قريباً - متجر DimdoumX</h1>
+
+    <section class="product-grid">
+      <!-- منتجات -->
+      <div class="product-card">
+        <img src="https://via.placeholder.com/300x200" alt="تيشيرت" />
+        <div class="info">
+          <h3>تيشيرت DimdoumX</h3>
+          <p>سعر: 3000 د.ج</p>
+          <button onclick="addToCart('تيشيرت', 3000)">أضف للسلة</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/300x200" alt="كوب" />
+        <div class="info">
+          <h3>كوب مميز</h3>
+          <p>سعر: 1500 د.ج</p>
+          <button onclick="addToCart('كوب', 1500)">أضف للسلة</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/300x200" alt="ستيكر" />
+        <div class="info">
+          <h3>ستيكرات حصرية</h3>
+          <p>سعر: 800 د.ج</p>
+          <button onclick="addToCart('ستيكرات', 800)">أضف للسلة</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/300x200" alt="قبعة" />
+        <div class="info">
+          <h3>قبعة DimdoumX</h3>
+          <p>سعر: 2500 د.ج</p>
+          <button onclick="addToCart('قبعة', 2500)">أضف للسلة</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="cart">
+      <h2>سلة المشتريات</h2>
+      <ul class="cart-items" id="cartItems"></ul>
+      <p><strong>الإجمالي:</strong> <span id="total">0</span> د.ج</p>
+      <a href="checkout.html" class="checkout-button">إتمام الطلب</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 DimdoumX. جميع الحقوق محفوظة.</p>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+  </footer>
+
+  <!-- Cart Script -->
+  <script>
+    let cart = [];
+
+    if (localStorage.getItem('cart')) {
+      cart = JSON.parse(localStorage.getItem('cart'));
+      updateCart();
+    }
+
+    function addToCart(name, price) {
+      const existingItem = cart.find(item => item.name === name);
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+      saveCart();
+      updateCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      saveCart();
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartItems = document.getElementById('cartItems');
+      const total = document.getElementById('total');
+      cartItems.innerHTML = '';
+      let sum = 0;
+
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        sum += itemTotal;
+
+        const li = document.createElement('li');
+        li.innerHTML = `
+          ${item.name} × ${item.quantity} - ${itemTotal} د.ج
+          <button onclick="removeFromCart(${index})">حذف</button>
+        `;
+        cartItems.appendChild(li);
+      });
+
+      total.textContent = sum;
+    }
+
+    function saveCart() {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+  </script>
+
+</body>
+</html>
