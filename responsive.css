@@ -1,0 +1,17 @@
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  nav {
+    flex-direction: column;
+  }
+
+  /* عدل على العناصر حسب تصميمك */
+}
